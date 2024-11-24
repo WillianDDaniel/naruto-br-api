@@ -1,116 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../src/assets/images/naruto-br-api.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+    <link href="../src/assets/output.css" rel="stylesheet">
+    <title>Naruto BR API - Admin</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
-  <link rel="stylesheet" href="../src/assets/output.css">
-  <title>Gerenciador de Personagens</title>
-</head>
+  <body class="bg-gray-100">
+    <div id="app">
 
-<body class="bg-gray-100">
-  <div id="app">
-
-    <div v-if="!authenticated" class="min-h-screen flex items-center justify-center">
-      <div class="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Login Admin</h2>
-
-        <div class="space-y-4">
-          <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2">username</label>
-            <input type="text" v-model="loginForm.username"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="username">
+      <nav class="bg-orange-600 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between h-16">
+            <div class="flex items-center">
+              <span class="text-white text-xl font-bold">Naruto BR API</span>
+            </div>
+            <div class="flex items-center">
+              <button @click="logout" class="text-white hover:bg-orange-700 px-3 py-2 rounded-md">
+                Sair
+              </button>
+            </div>
           </div>
+        </div>
+      </nav>
 
-          <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-            <input type="password" v-model="loginForm.password"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="********">
+      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+
+        <div class="px-4 py-6 sm:px-0">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Ações Rápidas</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="" class="block">
+              <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="px-4 py-5 sm:p-6">
+                  <div class="text-center">
+                    <div class="bg-blue-100 rounded-full p-3 mx-auto w-12 h-12 flex items-center justify-center mb-4">
+                      <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                      </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900">Novo Personagem</h3>
+                    <p class="mt-1 text-sm text-gray-500">Adicionar novo personagem</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="" class="block">
+              <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="px-4 py-5 sm:p-6">
+                  <div class="text-center">
+                    <div class="bg-purple-100 rounded-full p-3 mx-auto w-12 h-12 flex items-center justify-center mb-4">
+                      <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                      </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900">Novo Jutsu</h3>
+                    <p class="mt-1 text-sm text-gray-500">Adicionar nova técnica ninja</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="" class="block">
+              <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="px-4 py-5 sm:p-6">
+                  <div class="text-center">
+                    <div class="bg-green-100 rounded-full p-3 mx-auto w-12 h-12 flex items-center justify-center mb-4">
+                      <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                      </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900">Personagens</h3>
+                    <p class="mt-1 text-sm text-gray-500">Visualizar todos os personagens</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="" class="block">
+              <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="px-4 py-5 sm:p-6">
+                  <div class="text-center">
+                    <div class="bg-red-100 rounded-full p-3 mx-auto w-12 h-12 flex items-center justify-center mb-4">
+                      <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/>
+                      </svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900">Jutsus</h3>
+                    <p class="mt-1 text-sm text-gray-500">Visualizar todas as técnicas</p>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
+        </div>
 
-          <div v-if="loginError" class="text-red-500 text-sm text-center">
-            {{ loginError }}
+        <div class="mt-8 px-4 sm:px-0">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Atualizações Recentes</h2>
+          <div class="bg-white shadow overflow-hidden sm:rounded-md">
+            <ul class="divide-y divide-gray-200">
+              <li v-for="item in recentItems" :key="item.id">
+                <div class="px-4 py-4 sm:px-6">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-blue-600 truncate">
+                      {{ item.name }}
+                    </p>
+                    <div class="ml-2 flex-shrink-0 flex">
+                      <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                         :class="item.type === 'personagem' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'">
+                        {{ item.type }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-2 sm:flex sm:justify-between">
+                    <div class="sm:flex">
+                      <p class="flex items-center text-sm text-gray-500">
+                        Adicionado por {{ item.addedBy }}
+                      </p>
+                    </div>
+                    <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                      <p>
+                        Adicionado em {{ item.dateAdded }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
-
-          <button @click="login"
-            class="w-full bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
-            Entrar
-          </button>
         </div>
       </div>
     </div>
-
-
-    <div v-else class="min-h-screen bg-gray-100 py-6 px-4">
-      <div class="max-w-3xl mx-auto">
-        <div class="flex justify-between items-center mb-6">
-          <h1 class="text-2xl font-bold text-gray-800">Adicionar Novo Personagem</h1>
-          <button @click="logout" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
-            Sair
-          </button>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <div class="space-y-4">
-            <div>
-              <label class="block text-gray-700 text-sm font-bold mb-2">Nome do Personagem</label>
-              <input type="text" v-model="characterForm.name"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                placeholder="Naruto Uzumaki">
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-bold mb-2">Vila</label>
-              <input type="text" v-model="characterForm.village"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                placeholder="Konohagakure">
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-bold mb-2">Rank</label>
-              <select v-model="characterForm.rank"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
-                <option value="">Selecione um rank</option>
-                <option value="Genin">Genin</option>
-                <option value="Chunin">Chunin</option>
-                <option value="Jonin">Jonin</option>
-                <option value="ANBU">ANBU</option>
-                <option value="Kage">Kage</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-bold mb-2">Jutsus (separados por vírgula)</label>
-              <textarea v-model="characterForm.jutsus"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                placeholder="Rasengan, Kage Bunshin no Jutsu" rows="3"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-bold mb-2">Descrição</label>
-              <textarea v-model="characterForm.description"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                placeholder="Uma breve descrição do personagem..." rows="4"></textarea>
-            </div>
-
-            <div v-if="characterError" class="text-red-500 text-sm text-center">
-              {{ characterError }}
-            </div>
-
-            <button @click="addCharacter"
-              class="w-full bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
-              Adicionar Personagem
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="./script.js"></script>
-</body>
-
+    <script src="../src/guard.js"></script>
+    <script src="./script.js"></script>
+  </body>
 </html>
