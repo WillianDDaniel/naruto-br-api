@@ -1,0 +1,31 @@
+{
+  "name": "naruto-api-br",
+  "version": "1.0.0",
+  "description": "fan api dedicate to shared pt-br info about naruto anime",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "api",
+    "anime",
+    "naruto"
+  ],
+  "author": "Willian D. Daniel <williandeivitidaniel@live.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}

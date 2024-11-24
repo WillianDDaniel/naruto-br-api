@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <link rel="stylesheet" href="../src/assets/output.css">
+  <title>Gerenciador de Personagens</title>
+</head>
+
+<body class="bg-gray-100">
+  <div id="app">
+
+    <div v-if="!authenticated" class="min-h-screen flex items-center justify-center">
+      <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Login Admin</h2>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">username</label>
+            <input type="text" v-model="loginForm.username"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="username">
+          </div>
+
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
+            <input type="password" v-model="loginForm.password"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="********">
+          </div>
+
+          <div v-if="loginError" class="text-red-500 text-sm text-center">
+            {{ loginError }}
+          </div>
+
+          <button @click="login"
+            class="w-full bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+            Entrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div v-else class="min-h-screen bg-gray-100 py-6 px-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-gray-800">Adicionar Novo Personagem</h1>
+          <button @click="logout" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+            Sair
+          </button>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-gray-700 text-sm font-bold mb-2">Nome do Personagem</label>
+              <input type="text" v-model="characterForm.name"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Naruto Uzumaki">
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-bold mb-2">Vila</label>
+              <input type="text" v-model="characterForm.village"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Konohagakure">
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-bold mb-2">Rank</label>
+              <select v-model="characterForm.rank"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <option value="">Selecione um rank</option>
+                <option value="Genin">Genin</option>
+                <option value="Chunin">Chunin</option>
+                <option value="Jonin">Jonin</option>
+                <option value="ANBU">ANBU</option>
+                <option value="Kage">Kage</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-bold mb-2">Jutsus (separados por vírgula)</label>
+              <textarea v-model="characterForm.jutsus"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Rasengan, Kage Bunshin no Jutsu" rows="3"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-bold mb-2">Descrição</label>
+              <textarea v-model="characterForm.description"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Uma breve descrição do personagem..." rows="4"></textarea>
+            </div>
+
+            <div v-if="characterError" class="text-red-500 text-sm text-center">
+              {{ characterError }}
+            </div>
+
+            <button @click="addCharacter"
+              class="w-full bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+              Adicionar Personagem
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
