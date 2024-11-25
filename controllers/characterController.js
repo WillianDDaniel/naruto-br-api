@@ -7,7 +7,7 @@ module.exports = {
         include: [
           { model: Character, as: 'father', attributes: ['name']},
           { model: Character, as: 'mother', attributes: ['name']},
-          { model: Jutsu, as: 'jutsus', attributes: ['name']},
+          { model: Jutsu, as: 'jutsus', attributes: { exclude: ['createdAt', 'updatedAt'] }},
           { model: CharacterImage, as: 'images', attributes: ['image_url']},
         ],
         attributes: { exclude: ['createdAt', 'updatedAt'] },
@@ -25,7 +25,7 @@ module.exports = {
         include: [
           { model: Character, as: 'father', attributes: ['name']},
           { model: Character, as: 'mother', attributes: ['name']},
-          { model: Jutsu, as: 'jutsus', attributes: ['name']},
+          { model: Jutsu, as: 'jutsus', attributes: { exclude: ['createdAt', 'updatedAt'] }},
           { model: CharacterImage, as: 'images', attributes: ['image_url']},
         ],
         attributes: { exclude: ['createdAt', 'updatedAt'] },
