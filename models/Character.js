@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Character = sequelize.define('Character', {
-    name: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false, validate : { notEmpty: true, notNull: true } },
     father_id: { type: DataTypes.INTEGER, allowNull: true },
     mother_id: { type: DataTypes.INTEGER, allowNull: true },
-    village: { type: DataTypes.STRING, allowNull: false },
-    rank: { type: DataTypes.STRING, allowNull: false },
-    power: { type: DataTypes.INTEGER, allowNull: false },
-    profile_image: { type: DataTypes.STRING, allowNull: true },
-    summary: { type: DataTypes.TEXT, allowNull: true },
+    village: { type: DataTypes.STRING, allowNull: false, validate : { notEmpty: true, notNull: true } },
+    rank: { type: DataTypes.STRING, allowNull: false, validate : { notEmpty: true, notNull: true } },
+    power: { type: DataTypes.INTEGER, allowNull: false, validate : { notEmpty: true, notNull: true } },
+    profile_image: { type: DataTypes.STRING, allowNull: false, validate : { notEmpty: true, notNull: true } },
+    summary: { type: DataTypes.TEXT, allowNull: false, validate : { notEmpty: true, notNull: true } },
   });
 
   Character.associate = (models) => {

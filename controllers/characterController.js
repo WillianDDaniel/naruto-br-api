@@ -43,7 +43,7 @@ module.exports = {
       const newCharacter = await Character.create(req.body);
       res.status(201).json(newCharacter);
     } catch (error) {
-      res.status(400).json({ error: 'Failed to create character' });
+      res.status(400).json({ error: 'Failed to create character', error });
     }
   },
 
