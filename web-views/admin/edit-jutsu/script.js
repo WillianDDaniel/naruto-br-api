@@ -1,8 +1,8 @@
 const app = Vue.createApp({
   methods: {
-    logout() {
-      alert('Você foi deslogado!');
-      console.log('Logout executado.');
+    async logout() {
+      const response = await fetch('/auth/logout', { method: 'DELETE' })
+      if (response.ok) window.location.href = '/login';
     }
   },
 });

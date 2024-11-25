@@ -12,9 +12,9 @@ const app = Vue.createApp({
     };
   },
   methods: {
-    logout() {
-      alert('Você foi deslogado!');
-      console.log('Logout executado.');
+    async logout() {
+      const response = await fetch('/auth/logout', { method: 'DELETE' })
+      if (response.ok) window.location.href = '/login';
     },
     async createCharacter() {
       const response = await fetch('/characters', {
@@ -38,6 +38,7 @@ const app = Vue.createApp({
 
         if (response.ok) {
           console.log('Personagem criado com sucesso:', data);
+          window.location.href = '/admin/characters';
         } else {
           console.error(data.error);
         }

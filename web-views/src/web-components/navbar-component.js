@@ -5,7 +5,9 @@ class NavbarComponent extends HTMLElement {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16">
             <div class="flex items-center">
-              <span class="text-white text-xl font-bold">Naruto BR API</span>
+              <span id='logo' class="text-white text-xl font-bold cursor-pointer">
+                Naruto BR API
+              </span>
             </div>
             <div class="flex items-center">
               <!-- O botão mantém o mesmo comportamento -->
@@ -21,6 +23,11 @@ class NavbarComponent extends HTMLElement {
     const logoutButton = this.querySelector('button');
     logoutButton.addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('logout'));
+    });
+
+    const logo = this.querySelector('#logo');
+    logo.addEventListener('click', () => {
+      window.location.href = '/admin';
     });
   }
 }

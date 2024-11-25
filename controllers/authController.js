@@ -33,4 +33,9 @@ module.exports = {
   async checkAuth(req, res) {
     res.status(200).json({ message: 'Authenticated' });
   },
+
+  async logout(req, res) {
+    res.clearCookie('auth_token');
+    res.status(200).json({ message: 'Logout successful' });
+  },
 };

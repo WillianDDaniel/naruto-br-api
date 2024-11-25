@@ -5,5 +5,6 @@ const authenticate = require('../middlewares/auth.js');
 
 authRoutes.get('/', authenticate, authController.checkAuth);
 authRoutes.post('/', authController.login);
+authRoutes.delete('/logout', authController.logout);
 
 module.exports = authRoutes;

@@ -16,6 +16,17 @@
 
     <div id="app">
       <navbar-component ref="navbar" @logout="logout"></navbar-component>
+
+      <section id="characters" class="py-16 bg-white">
+        <div class="mx-auto px-16">
+          <h2 class="text-3xl font-bold text-center mb-12">Personagens</h2>
+
+          <div v-for="character in characters">
+            {{ character.name }}
+          </div>
+        </div>
+      </section>
+
     </div>
 
     <script src="../../src/guard.js"></script>
