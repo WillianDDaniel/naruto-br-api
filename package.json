@@ -9,7 +9,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
-    "dev:tailwind": "npx tailwindcss -i ./web-views/src/assets/input.css -o ./web-views/src/assets/output.css --watch"
+    "dev:tailwind": "npx tailwindcss -i ./web-views/src/assets/input.css -o ./web-views/src/assets/output.css --watch",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [
     "api",
@@ -31,7 +34,9 @@
     "sequelize-cli": "^6.6.2"
   },
   "devDependencies": {
+    "@vitest/ui": "^2.1.6",
     "sqlite3": "^5.1.7",
-    "tailwindcss": "^3.4.15"
+    "tailwindcss": "^3.4.15",
+    "vitest": "^2.1.6"
   }
 }
