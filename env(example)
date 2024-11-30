@@ -1,0 +1,8 @@
+JWT_SECRET_KEY=xxxxxxxxxxxxxxxxxxxxxx
+JWT_EXPIRATION=3h
+
+// Here is a user used on the seed to populate system admin user
+USERNAME=your_user
+USER_PASSWORD=your_password
+
+DATABASE_URL=your_database_url_connect

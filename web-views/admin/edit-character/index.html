@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../src/assets/images/naruto-br-api.png" type="image/png">
+  <title>Editar Personagem - Naruto BR API</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script defer src="../../src/web-components/navbar-component.js"></script>
+  <link href="../../src/assets/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <div id="app">
+    <navbar-component ref="navbar" @logout="logout"></navbar-component>
+
+    <section class="max-w-2xl mt-4 mx-auto bg-white rounded-xl shadow-lg p-8">
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Editar Personagem</h1>
+
+      <form v-if="character" @submit.prevent="updateCharacter" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label for="name" class="mb-2 font-medium text-gray-700">Nome do Personagem:</label>
+            <input type="text" v-model="character.name" id="name" required
+              class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+          </div>
+
+          <div class="flex flex-col">
+            <label for="village" class="mb-2 font-medium text-gray-700">Vila:</label>
+            <input type="text" v-model="character.village" id="village" required
+              class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+          </div>
+
+          <div class="flex flex-col">
+            <label for="rank" class="mb-2 font-medium text-gray-700">Rank:</label>
+            <input type="text" v-model="character.rank" id="rank" required
+              class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+          </div>
+
+          <div class="flex flex-col">
+            <label for="power" class="mb-2 font-medium text-gray-700">Nível de Poder:</label>
+            <input type="number" v-model="character.power" id="power" required
+              class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+          </div>
+
+          <div class="flex flex-col">
+            <label for="father" class="mb-2 font-medium text-gray-700">Pai:</label>
+            <select name="father" id="father" v-model="character.father_id">
+              <option v-if="!character.father" value="">Selecione</option>
+              <option v-for="parentCharacter in characters" :value="parentCharacter.id">
+                {{ parentCharacter.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="flex flex-col">
+            <label for="mother" class="mb-2 font-medium text-gray-700">Mãe:</label>
+            <select name="mother" id="mother" v-model="character.mother_id">
+              <option v-if="!character.mother" value="">Selecione</option>
+              <option v-for="parentCharacter in characters" :value="parentCharacter.id">
+                {{ parentCharacter.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <label for="image" class="mb-2 font-medium text-gray-700">Imagem de Perfil:</label>
+          <input type="text" v-model="character.profile_image" id="image" required
+            class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+        </div>
+
+        <div class="flex flex-col">
+          <label for="summary" class="mb-2 font-medium text-gray-700">Resumo:</label>
+          <textarea v-model="character.summary" id="summary" required
+            class="px-3 py-2 border border-gray-300 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <a :href="`/admin/character?id=${character.id}`"
+            class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500">
+            Cancelar
+          </a>
+          <button type="submit"
+            class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500">
+            Atualizar Personagem
+          </button>
+        </div>
+      </form>
+
+      <div v-else class="text-center text-gray-600">
+        Carregando informações do personagem...
+      </div>
+    </section>
+  </div>
+
+  <script src="../../src/guard.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>

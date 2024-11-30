@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./src/assets/images/naruto-br-api.png" type="image/png">
+
+  <title>Naruto BR API</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+  <link rel="stylesheet" href="./src/assets/output.css">
+</head>
+
+<body class="bg-gray-50">
+  <div id="app">
+    <header class="bg-gradient-to-r from-orange-500 to-red-600">
+      <nav class="mx-auto px-16 py-4">
+        <div class="flex items-center justify-between">
+          <div class="text-white font-bold text-xl">Naruto BR API</div>
+          <div>
+            <a href="#docs" class="text-white hover:text-orange-200 mx-3">Documentação</a>
+            <a href="#endpoints" class="text-white hover:text-orange-200 mx-3">Endpoints</a>
+            <a href="#examples" class="text-white hover:text-orange-200 mx-3">Exemplos</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="mx-auto px-16 py-16">
+        <div class="md:flex items-center">
+          <div class="w-full">
+
+            <h1 class="text-4xl font-bold text-white mb-4">
+              Explore o Universo Shinobi
+            </h1>
+
+            <p class="text-white text-lg mb-8">
+              API completa com informações sobre personagens, jutsus, vilas e muito mais do mundo de Naruto.
+            </p>
+
+            <button @click="scrollToDoc"
+              class="bg-white text-orange-500 px-16 py-3 rounded-lg font-semibold hover:bg-orange-100 transition">
+              Começar a Usar
+            </button>
+          </div>
+
+          <div class="w-full md:w-1/2 flex justify-center">
+            <div class="w-64 h-64 border-red-300 border-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <img src="./src/assets/images/naruto-team-7-circle.png" alt="">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <section class="py-16">
+      <div class="mx-auto px-16">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <div class="text-orange-500 text-2xl mb-4">🎯</div>
+            <h3 class="font-bold text-xl mb-2">Endpoints RESTful</h3>
+            <p class="text-gray-600">
+              API REST com endpoints intuitivos e bem documentados para fácil integração.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <div class="text-orange-500 text-2xl mb-4">⚡</div>
+            <h3 class="font-bold text-xl mb-2">Alta Performance</h3>
+            <p class="text-gray-600">
+              Respostas rápidas e cache otimizado para melhor experiência.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <div class="text-orange-500 text-2xl mb-4">📚</div>
+            <h3 class="font-bold text-xl mb-2">Dados Completos</h3>
+            <p class="text-gray-600">
+              Base de dados extensa com informações detalhadas do universo Naruto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs" class="py-16 bg-white">
+      <div class="mx-auto px-16">
+        <h2 class="text-3xl font-bold text-center mb-12">Como Usar</h2>
+
+        <div class="bg-gray-800 rounded-lg p-6 overflow-hidden">
+          <pre class="language-javascript"><code>// Exemplo de requisição
+fetch('https://naruto-br-api.com/api/characters/1')
+  .then(response => response.json())
+  .then(data => console.log(data));</code></pre>
+        </div>
+        <div class="mt-8 bg-gray-100 rounded-lg p-6">
+          <h3 class="font-bold mb-4">Resposta:</h3>
+          <pre class="language-javascript"><code>{
+  "id": 1,
+  "name": "Uzumaki Naruto",
+  "father": "Namikaze Minato",
+  "mother": "Uzumaki Kushina",
+  "village": "Konohagakure",
+  "rank": "Hokage",
+  "power": 9999,
+  "profile_image": "https://example.com/naruto.jpg",
+  "summary": "Naruto Uzumaki é o Sétimo Hokage de Konoha, conhecido por sua força e determinação...",
+  "jutsus": ["Rasengan", "Kage Bunshin"]
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-orange-500">
+      <div class="mx-auto px-16 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Pronto para Começar?
+        </h2>
+        <p class="text-white mb-8">
+          Obtenha sua chave de API gratuitamente e comece a explorar.
+        </p>
+        <button class="bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-orange-100 transition">
+          Registrar Agora
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script src="./src/main.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../src/assets/images/naruto-br-api.png" type="image/png">
+
+  <title>Personagens - Naruto BR API</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script defer src="../../src/web-components/navbar-component.js"></script>
+  <link href="../../src/assets/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+
+  <div id="app">
+    <navbar-component ref="navbar" @logout="logout"></navbar-component>
+
+    <section id="characters" class="py-16 bg-white">
+      <div class="mx-auto px-16 flex flex-wrap justify-between">
+        <h2 class="text-3xl font-bold text-center mb-12 w-full">Personagens</h2>
+
+        <div v-for="character in characters">
+          <div class="w-full max-w-md mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+            <div class="relative">
+              <img :src="character.profile_image || 'https://via.placeholder.com/400x300?text=Ninja'"
+                :alt="character.name" class="w-full h-64 object-cover">
+              <div
+                class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center">
+                {{ character.rank }}
+              </div>
+            </div>
+
+            <div class="p-6">
+              <a :href="`/admin/character?id=${character.id}`">
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                  {{ character.name }}
+                </h2>
+              </a>
+              <p class="text-gray-600 mb-4">{{ character.summary }}</p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  Village: {{ character.village.name }}
+                </span>
+                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
+                  Power: {{ character.power }}
+                </span>
+              </div>
+
+              <div class="border-t pt-4">
+                <h3 class="text-lg font-semibold mb-3">Jutsus</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  <div v-for="jutsu in character.jutsus" :key="jutsu.id" class="bg-green-100 rounded p-3 shadow-sm">
+                    <p class="font-medium text-sm mb-1">{{ jutsu.name }}</p>
+                    <p class="text-xs text-gray-600">Type: {{ jutsu.type }}</p>
+                    <p class="text-xs text-gray-500 mt-1">{{ jutsu.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="../../src/guard.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
