@@ -1,13 +1,10 @@
-import { Sequelize } from 'sequelize';
-import config from './config/config.js';
-
-process.env.NODE_ENV = 'test';
-
+import models from '../models';
 
 export async function setupDatabase() {
-  const sequelize = new Sequelize(config.test);
-
-  await sequelize.sync({ force: true });
-
-  return sequelize;
+  await Promise.all(
+    Object.keys(models).map(async (modelName) => {
+      if (['sequelize', 'Sequelize', 'SequelizeMeta'].includes(modelName)) return null;
+      await models[modelName].destroy({ where: {}, force: true });
+    })
+  );
 }

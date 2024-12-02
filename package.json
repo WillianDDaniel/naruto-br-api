@@ -7,9 +7,11 @@
     "node": "20.x"
   },
   "scripts": {
+    "vercel-build": "npx sequelize-cli db:migrate",
     "start": "node index.js",
     "dev": "node --watch index.js",
     "dev:tailwind": "npx tailwindcss -i ./web-views/src/assets/input.css -o ./web-views/src/assets/output.css --watch",
+    "pretest": "NODE_ENV=test npx sequelize-cli db:migrate",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage"
