@@ -1,5 +1,6 @@
 /storage/database.sqlite
 /storage/test.sqlite
 node_modules/
+coverage/
 .env
 tasks.txt

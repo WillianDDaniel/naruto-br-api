@@ -1,20 +1,18 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Village extends Model {
+  const Village = sequelize.define('Village', {
+    name: { type: DataTypes.STRING, allowNull: false, unique: true,
+      validate: { notEmpty: true, notNull: true, isValidVillageName: validateVillageName }
+    },
+  });
 
-    static associate(models) {
-      Village.hasMany(models.Character, { foreignKey: 'village_id', as: 'characters' });
+  async function validateVillageName(value) {
+    if (value) {
+      const village = await sequelize.models.Village.findOne({ where: { name: value } });
+      if (village) {
+        throw new Error('Village name must be unique.');
+      }
     }
   }
-  Village.init({
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Village',
-  });
 
   return Village;
 };

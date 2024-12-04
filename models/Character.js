@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Character = sequelize.define('Character', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false, validate: { notEmpty: true, notNull: true } },
     rank: { type: DataTypes.STRING, allowNull: false, validate: { notEmpty: true, notNull: true } },
     power: { type: DataTypes.INTEGER, allowNull: false, validate: { notEmpty: true, notNull: true } },
