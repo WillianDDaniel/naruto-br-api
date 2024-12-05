@@ -19,11 +19,11 @@
     <header class="bg-gradient-to-r from-orange-500 to-red-600">
       <nav class="mx-auto px-16 py-4">
         <div class="flex items-center justify-between">
-          <div class="text-white font-bold text-xl">Naruto BR API</div>
+          <div class="text-white font-bold text-xl select-none">Naruto BR API</div>
           <div>
-            <a href="#docs" class="text-white hover:text-orange-200 mx-3">Documentação</a>
-            <a href="#endpoints" class="text-white hover:text-orange-200 mx-3">Endpoints</a>
-            <a href="#examples" class="text-white hover:text-orange-200 mx-3">Exemplos</a>
+            <a href="#docs" class="text-white hover:text-orange-200 mx-3 select-none">Documentação</a>
+            <a href="#endpoints" class="text-white hover:text-orange-200 mx-3 select-none">Endpoints</a>
+            <a href="#examples" class="text-white hover:text-orange-200 mx-3 select-none">Exemplos</a>
           </div>
         </div>
       </nav>
@@ -41,14 +41,14 @@
             </p>
 
             <button @click="scrollToDoc"
-              class="bg-white text-orange-500 px-16 py-3 rounded-lg font-semibold hover:bg-orange-100 transition">
+              class="bg-white text-orange-500 px-16 py-3 rounded-lg font-semibold hover:bg-orange-100 transition select-none">
               Começar a Usar
             </button>
           </div>
 
           <div class="w-full md:w-1/2 flex justify-center">
-            <div class="w-64 h-64 border-red-300 border-8 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <img src="./src/assets/images/naruto-team-7-circle.png" alt="">
+            <div class="w-64 h-64 border-red-300 border-8 bg-white rounded-full flex items-center justify-center shadow-lg select-none">
+              <img src="/src/assets/naruto-team-7-circle.webp" alt="">
             </div>
           </div>
 
@@ -90,13 +90,13 @@
 
         <div class="bg-gray-800 rounded-lg p-6 overflow-hidden">
           <pre class="language-javascript"><code>// Exemplo de requisição
-fetch('https://naruto-br-api.com/api/characters/1')
+fetch('https://naruto-br-api.site/characters')
   .then(response => response.json())
   .then(data => console.log(data));</code></pre>
         </div>
         <div class="mt-8 bg-gray-100 rounded-lg p-6">
           <h3 class="font-bold mb-4">Resposta:</h3>
-          <pre class="language-javascript"><code>{
+          <pre class="language-javascript"><code>[{
   "id": 1,
   "name": "Uzumaki Naruto",
   "father": "Namikaze Minato",
@@ -106,8 +106,12 @@ fetch('https://naruto-br-api.com/api/characters/1')
   "power": 9999,
   "profile_image": "https://example.com/naruto.jpg",
   "summary": "Naruto Uzumaki é o Sétimo Hokage de Konoha, conhecido por sua força e determinação...",
-  "jutsus": ["Rasengan", "Kage Bunshin"]
-}</code></pre>
+  "jutsus": ["Rasengan", "Kage Bunshin"],
+  "images": ["https://example.com/naruto.jpg", "https://example.com/naruto.png"]
+},
+{
+  // Outros personagens
+}]</code></pre>
         </div>
       </div>
     </section>
