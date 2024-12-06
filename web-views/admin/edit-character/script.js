@@ -2,7 +2,8 @@ const app = Vue.createApp({
   data() {
     return {
       character: {},
-      characters: []
+      characters: [],
+      villages: null
     }
   },
   methods: {
@@ -54,8 +55,19 @@ const app = Vue.createApp({
         console.error(error);
       }
     },
+    async getAllVillages() {
+      const response = await fetch('/villages')
+      try {
+        if(response.ok) {
+          this.villages = await response.json()
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
   created() {
+    this.getAllVillages();
     this.getCharacter();
     this.getAllCharacters();
   }

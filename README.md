@@ -50,7 +50,6 @@ Resposta:
 Exemplo de Uso:
 
 ```javascript
-Copiar código
 fetch('https://naruto-br-api.site/characters/1')
   .then(response => response.json())
   .then(data => console.log(data));
@@ -59,7 +58,6 @@ fetch('https://naruto-br-api.site/characters/1')
 Resposta:
 
 ```json
-Copiar código
 {
   "id": 1,
   "name": "Uzumaki Naruto",
@@ -87,7 +85,6 @@ Copiar código
 Exemplo de Uso:
 
 ```javascript
-Copiar código
 fetch('https://naruto-br-api.site/villages')
   .then(response => response.json())
   .then(data => console.log(data));
@@ -96,7 +93,6 @@ fetch('https://naruto-br-api.site/villages')
 Resposta:
 
 ```json
-Copiar código
 [
   {
     "id": 1,
@@ -131,7 +127,6 @@ Copiar código
 Exemplo de Uso:
 
 ```javascript
-Copiar código
 fetch('https://naruto-br-api.site/villages/1')
   .then(response => response.json())
   .then(data => console.log(data));
@@ -140,7 +135,6 @@ fetch('https://naruto-br-api.site/villages/1')
 Resposta:
 
 ```json
-Copiar código
 {
   "id": 1,
   "name": "Konohagakure",
@@ -161,7 +155,9 @@ Copiar código
 ## 💡 Observações
 
 **Base URL:** Todas as requisições devem começar com https://naruto-br-api.site.
+
 **Formato da Resposta:** As respostas são fornecidas em JSON.
+
 **CORS:** A API é configurada para permitir acessos de qualquer origem.
 
 ## 📄 Licença
