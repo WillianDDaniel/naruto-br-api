@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING, allowNull: false, unique: true,
       validate: { notEmpty: true, notNull: true, isValidVillageName: validateVillageName }
     },
+    symbol: { type: DataTypes.STRING, allowNull: true,}
   });
 
   async function validateVillageName(value) {
