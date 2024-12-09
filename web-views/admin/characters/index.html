@@ -18,11 +18,19 @@
   <div id="app">
     <navbar-component ref="navbar" @logout="logout"></navbar-component>
 
-    <section id="characters" class="py-16 bg-white">
+    <section id="characters" class="py-8 bg-white">
       <div class="mx-auto px-16 flex flex-wrap justify-between">
-        <h2 class="text-3xl font-bold text-center mb-12 w-full">Personagens</h2>
 
-        <div v-for="character in characters">
+        <h2 class="text-3xl font-bold text-center mb-8 w-full">Personagens</h2>
+
+        <div class="w-full mx-auto mb-8">
+          <label for="search" class="block text-gray-600 font-medium mb-2">Busca personagem:</label>
+          <input type="text" v-model="search" placeholder="Digite o nome do personagem"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+
+        <div v-for="character in filteredCharacters">
           <div class="w-full max-w-md mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
             <div class="relative">
               <img :src="character.profile_image || 'https://via.placeholder.com/400x300?text=Ninja'"

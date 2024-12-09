@@ -1,9 +1,11 @@
 const app = Vue.createApp({
   data() {
     return {
-      character: {},
+      character: {
+        village: { id: null, name: '' },
+      },
       characters: [],
-      villages: null
+      villages: [],
     }
   },
   methods: {
@@ -68,8 +70,8 @@ const app = Vue.createApp({
   },
   created() {
     this.getAllVillages();
-    this.getCharacter();
     this.getAllCharacters();
-  }
+    this.getCharacter();
+  },
 });
 app.mount('#app');

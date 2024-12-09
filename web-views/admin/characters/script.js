@@ -2,6 +2,8 @@ const app = Vue.createApp({
   data() {
     return {
       characters: [],
+      filteredCharacters: [],
+      search: null
     }
   },
   methods: {
@@ -17,9 +19,21 @@ const app = Vue.createApp({
         console.error(error);
       }
     },
+    filterCharacters() {
+      this.filteredCharacters = this.characters.filter((character) => {
+        if (!this.search || this.search === '') return this.characters;
+        return character.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    }
   },
-  created() {
-    this.getAllCharacters();
+  async created() {
+    await this.getAllCharacters();
+    this.filterCharacters();
+  },
+  watch: {
+    search() {
+      this.filterCharacters();
+    }
   }
 });
 app.mount('#app');

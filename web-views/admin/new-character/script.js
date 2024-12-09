@@ -54,8 +54,8 @@ const app = Vue.createApp({
   },
 
   created() {
-    this.getAllCharacters();
     this.getAllVillages();
+    this.getAllCharacters();
   }
 });
 app.mount('#app');

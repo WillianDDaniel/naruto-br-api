@@ -30,7 +30,9 @@
             <label for="village" class="mb-2 font-medium text-gray-700">Vila:</label>
             <select name="village" id="village" v-model="character.village_id"
               class="p-1 border border-gray-500 rounded">
+
               <option :value="character.village_id"> {{ character.village.name }}</option>
+
               <option v-for="village in villages" :value="village.id">
                 {{ village.name }}
               </option>
