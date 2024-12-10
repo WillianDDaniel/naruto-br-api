@@ -3,7 +3,8 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: ''
+      message: '',
+      currentYear: new Date().getFullYear()
     }
   },
   methods: {
