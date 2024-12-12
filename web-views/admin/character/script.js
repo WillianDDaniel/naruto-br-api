@@ -74,7 +74,8 @@ const app = Vue.createApp({
       }
     },
   },
-  mounted() {
-    this.getCharacter()
+  async mounted() {
+    await this.getCharacter()
+    document.title = `${this.character.name} - Naruto BR API`
   }
 }).mount('#app');
