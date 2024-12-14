@@ -30,8 +30,8 @@
           />
         </div>
 
-        <div v-for="character in filteredCharacters">
-          <div class="w-full max-w-md mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+        <div v-for="character in filteredCharacters" class="w-[24%] mb-4">
+          <div class="bg-white shadow-lg rounded-xl overflow-hidden">
             <div class="relative">
               <img :src="character.profile_image || 'https://via.placeholder.com/400x300?text=Ninja'"
                 :alt="character.name" class="w-full h-64 object-cover">
@@ -41,13 +41,13 @@
               </div>
             </div>
 
-            <div class="p-6">
+            <div class="p-4">
               <a :href="`/admin/character?id=${character.id}`">
-                <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2 text-nowrap">
                   {{ character.name }}
                 </h2>
               </a>
-              <p class="text-gray-600 mb-4">{{ character.summary }}</p>
+              <p class="text-gray-600 mb-4 text-clip h-18 line-clamp-3">{{ truncateText(character.summary, 65) }}</p>
 
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
@@ -56,17 +56,6 @@
                 <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
                   Power: {{ character.power }}
                 </span>
-              </div>
-
-              <div class="border-t pt-4">
-                <h3 class="text-lg font-semibold mb-3">Jutsus</h3>
-                <div class="grid grid-cols-2 gap-2">
-                  <div v-for="jutsu in character.jutsus" :key="jutsu.id" class="bg-green-100 rounded p-3 shadow-sm">
-                    <p class="font-medium text-sm mb-1">{{ jutsu.name }}</p>
-                    <p class="text-xs text-gray-600">Type: {{ jutsu.type }}</p>
-                    <p class="text-xs text-gray-500 mt-1">{{ jutsu.description }}</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

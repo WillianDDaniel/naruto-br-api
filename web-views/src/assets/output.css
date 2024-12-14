@@ -641,6 +641,13 @@ video {
   margin-top: 2rem;
 }
 
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .block {
   display: block;
 }
@@ -681,8 +688,28 @@ video {
   height: 16rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
+.max-h-12 {
+  max-height: 3rem;
+}
+
+.max-h-6 {
+  max-height: 1.5rem;
+}
+
+.max-h-16 {
+  max-height: 4rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .w-12 {
@@ -717,6 +744,22 @@ video {
   width: 100%;
 }
 
+.w-1\/6 {
+  width: 16.666667%;
+}
+
+.w-\[22\%\] {
+  width: 22%;
+}
+
+.w-\[23\%\] {
+  width: 23%;
+}
+
+.w-\[24\%\] {
+  width: 24%;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -731,10 +774,6 @@ video {
 
 .max-w-7xl {
   max-width: 80rem;
-}
-
-.max-w-md {
-  max-width: 28rem;
 }
 
 .max-w-sm {
@@ -884,6 +923,18 @@ video {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-clip {
+  text-overflow: clip;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
 }
 
 .rounded {

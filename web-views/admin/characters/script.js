@@ -24,6 +24,12 @@ const app = Vue.createApp({
         if (!this.search || this.search === '') return this.characters;
         return character.name.toLowerCase().includes(this.search.toLowerCase());
       });
+    },
+    truncateText(text, maxLength) {
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+      }
+      return text;
     }
   },
   async created() {
