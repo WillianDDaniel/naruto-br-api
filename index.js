@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
@@ -13,6 +14,7 @@ const villageRoutes = require('./routes/villageRoutes.js');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
