@@ -1,11 +1,10 @@
 /storage/database.sqlite
 /storage/test.sqlite
 node_modules/
-coverage/
+coverage
 .env
 
 tasks.txt
-
 charactersList.txt
 checkCharacters.js
 checkCharacters.json
