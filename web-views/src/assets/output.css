@@ -604,6 +604,10 @@ video {
   top: 1rem;
 }
 
+.m-8 {
+  margin: 2rem;
+}
+
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;

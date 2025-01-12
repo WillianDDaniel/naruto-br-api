@@ -11,25 +11,25 @@
   <link href="../../src/assets/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
-  <div id="app">
+<body class="bg-gradient-to-br from-gray-100 to-gray-300 min-h-screen">
+  <div id="app" class="mx-auto">
     <navbar-component ref="navbar" @logout="logout"></navbar-component>
 
-    <section class="max-w-2xl mt-4 mx-auto bg-white rounded-xl shadow-lg p-8">
-      <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Novo Personagem</h1>
+    <section class="flex flex-col items-center w-full max-w-4xl mx-auto py-8">
+      <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Novo Personagem</h1>
 
-      <form @submit.prevent="createCharacter" class="space-y-6">
+      <form @submit.prevent="createCharacter" class="bg-white shadow-lg rounded-lg p-8 w-full space-y-6">
         <div class="grid md:grid-cols-2 gap-4">
           <div class="flex flex-col">
-            <label for="name" class="mb-2 font-medium text-gray-700">Nome do Personagem:</label>
+            <label for="name" class="text-sm mb-2 font-medium text-gray-700">Nome do Personagem:</label>
             <input type="text" v-model="character.name" id="name" required
               class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
           </div>
 
           <div class="flex flex-col">
-            <label for="village" class="mb-2 font-medium text-gray-700">Vila:</label>
+            <label for="village" class="text-sm mb-2 font-medium text-gray-700">Vila:</label>
             <select name="village" id="village" v-model="character.village_id"
-              class="p-1 border border-gray-500 rounded"
+              class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 p-2 border"
             >
               <option v-for="village in villages" :value="village.id">
                 {{ village.name }}
@@ -38,20 +38,20 @@
           </div>
 
           <div class="flex flex-col">
-            <label for="rank" class="mb-2 font-medium text-gray-700">Rank:</label>
+            <label for="rank" class="text-sm mb-2 font-medium text-gray-700">Rank:</label>
             <input type="text" v-model="character.rank" id="rank" required
               class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
           </div>
 
           <div class="flex flex-col">
-            <label for="power" class="mb-2 font-medium text-gray-700">Nível de Poder:</label>
+            <label for="power" class="text-sm mb-2 font-medium text-gray-700">Nível de Poder:</label>
             <input type="number" v-model="character.power" id="power" required
               class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
           </div>
 
           <div class="flex flex-col">
-            <label for="father" class="mb-2 font-medium text-gray-700">Pai:</label>
-            <select class="p-1 border border-gray-500 rounded"
+            <label for="father" class="text-sm mb-2 font-medium text-gray-700">Pai:</label>
+            <select class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 p-2 border"
               name="father" id="father" v-model="character.father_id"
             >
               <option v-for="parentCharacter in characters" :value="parentCharacter.id">
@@ -61,8 +61,8 @@
           </div>
 
           <div class="flex flex-col">
-            <label for="mother" class="mb-2 font-medium text-gray-700">Mãe:</label>
-            <select class="p-1 border border-gray-500 rounded"
+            <label for="mother" class="text-sm mb-2 font-medium text-gray-700">Mãe:</label>
+            <select class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 p-2 border"
               name="mother" id="mother" v-model="character.mother_id"
             >
               <option v-for="parentCharacter in characters" :value="parentCharacter.id">
@@ -73,13 +73,13 @@
         </div>
 
         <div class="flex flex-col">
-          <label for="image" class="mb-2 font-medium text-gray-700">Imagem de Perfil:</label>
+          <label for="image" class="text-sm mb-2 font-medium text-gray-700">Imagem de Perfil:</label>
           <input type="text" v-model="character.profile_image" id="image" required
             class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
         </div>
 
         <div class="flex flex-col">
-          <label for="summary" class="mb-2 font-medium text-gray-700">Resumo:</label>
+          <label for="summary" class="text-sm mb-2 font-medium text-gray-700">Resumo:</label>
           <textarea v-model="character.summary" id="summary" required
             class="px-3 py-2 border border-gray-300 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
         </div>
