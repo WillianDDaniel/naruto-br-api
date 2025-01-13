@@ -7,9 +7,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     password_hash: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    twoFactorCode: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    twoFactorExpiresAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   });
 
