@@ -10,9 +10,24 @@
   <title>Login - Naruto BR API</title>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center relative">
   <div id="app" class="w-full max-w-sm">
-    <form @submit.prevent="login" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="fixed top-4 right-4 z-50 max-w-sm space-y-4">
+      <transition-group name="notification">
+        <div v-for="notification in notifications" :key="notification.id"
+          class="p-4 rounded-lg shadow-lg transform translate-x-0"
+          :class="[
+            notification.type === 'success' ? 'bg-green-100 text-green-800 border-l-4 border-green-500' :
+            notification.type === 'error' ? 'bg-red-100 text-red-800 border-l-4 border-red-500' :
+            notification.type === 'warning' ? 'bg-yellow-100 text-yellow-800 border-l-4 border-yellow-500' :
+            'bg-blue-100 text-blue-800 border-l-4 border-blue-500'
+          ]">
+          {{ notification.message }}
+        </div>
+      </transition-group>
+    </div>
+
+    <form v-if="!insertCodeInput" @submit.prevent="login" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="mb-4">
         <label for="username" class="block text-gray-700 text-sm font-bold mb-2">
           Usuário:
@@ -29,9 +44,58 @@
       </div>
       <div class="flex items-center justify-center">
         <button type="submit"
-          class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200">
           Entrar
         </button>
+      </div>
+      <div class="mt-4 text-center">
+        <a href="#" @click.prevent="goToCodeInput" class="text-orange-500 hover:text-orange-600 text-sm">
+          Já tenho um código
+        </a>
+      </div>
+    </form>
+
+    <form v-else @submit.prevent="insertCode" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="text-center mb-6">
+        <h2 class="text-xl font-bold text-gray-700 mb-2">Verificação em Duas Etapas</h2>
+        <p class="text-gray-600 text-sm">Digite o código de verificação enviado para seu email</p>
+
+        <div class="mt-4" v-if="timeRemaining > 0">
+          <p class="text-sm font-medium" :class="timeRemaining <= 60 ? 'text-red-500' : 'text-gray-600'">
+            Tempo restante: {{ formatTime(timeRemaining) }}
+          </p>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+            <div class="bg-orange-500 rounded-full h-2 transition-all duration-1000"
+              :style="{ width: `${(timeRemaining / (10 * 60)) * 100}%` }"
+              :class="timeRemaining <= 60 ? 'bg-red-500' : 'bg-orange-500'">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label for="code" class="block text-gray-700 text-sm font-bold mb-2">
+          Código de Verificação:
+        </label>
+        <input type="text" id="code" v-model="code" autocomplete="one-time-code" autofocus required maxlength="6"
+          class="shadow appearance-none border-2 border-orange-200 rounded w-full py-3 px-4 text-center text-2xl tracking-widest text-gray-700 leading-tight focus:outline-none focus:border-orange-500 focus:shadow-outline"
+          pattern="[0-9]*" inputmode="numeric">
+        <p class="text-gray-500 text-xs mt-2 text-center">Digite o código de 6 dígitos</p>
+      </div>
+      <div class="flex flex-col items-center gap-4">
+        <button type="submit"
+          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200">
+          Verificar
+        </button>
+        <div class="flex justify-between w-full text-sm">
+          <button type="button" @click="resendCode"
+            class="font-medium focus:outline-none transition-colors duration-200 text-orange-500 hover:text-orange-600">
+            Reenviar código
+          </button>
+          <button type="button" @click="insertCodeInput = false"
+            class="text-orange-500 hover:text-orange-600 font-medium focus:outline-none transition-colors duration-200">
+            Voltar
+          </button>
+        </div>
       </div>
     </form>
   </div>
