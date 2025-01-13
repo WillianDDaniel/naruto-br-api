@@ -3,6 +3,10 @@ JWT_EXPIRATION=3h
 
 // Here is a user used on the seed to populate system admin user
 USERNAME=your_user
+USER_EMAIL=your_admin_user_email
 USER_PASSWORD=your_password
 
 DATABASE_URL=your_database_url_connect
+
+// RESEND Service api key used to send emails <https://resend.com/emails>
+RESEND_API_KEY=your_resend_api_key
