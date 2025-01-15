@@ -1,12 +1,12 @@
 const app = Vue.createApp({
   data() {
     return {
-      characters: [],
       name: '',
       type: '',
       power: '',
-      character_id: '',
       description: '',
+      character: {},
+      character_id: '',
     }
   },
   methods: {
@@ -14,10 +14,11 @@ const app = Vue.createApp({
       const response = await fetch('/auth/logout', { method: 'DELETE' })
       if (response.ok) window.location.href = '/login';
     },
-    async getAllCharacters() {
-      const response = await fetch('/characters');
+    async getCharacter() {
+      this.character_id = new URLSearchParams(window.location.search).get('id');
+      const response = await fetch('/characters/' + this.character_id);
       try {
-        if (response.ok) this.characters = await response.json();
+        if (response.ok) this.character = await response.json();
       } catch (error) {
         console.error(error);
       }
@@ -47,7 +48,7 @@ const app = Vue.createApp({
     }
   },
   created() {
-    this.getAllCharacters();
+    this.getCharacter();
   }
 });
 app.mount('#app');
