@@ -10,6 +10,25 @@ module.exports = {
     }
   },
 
+  async getJutsuById(req, res) {
+    try {
+      const jutsu = await Jutsu.findByPk(req.params.id);
+      if (!jutsu) return res.status(404).json({ error: 'Jutsu not found' });
+      res.status(200).json(jutsu);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch jutsu' });
+    }
+  },
+
+  async getAllJutsus(req, res) {
+    try {
+      const jutsus = await Jutsu.findAll();
+      res.status(200).json(jutsus);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch jutsus' });
+    }
+  },
+
   async updateJutsu(req, res) {
     try {
       const updated = await Jutsu.update(req.body, { where: { id: req.params.id } });
