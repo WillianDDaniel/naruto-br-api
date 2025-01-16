@@ -39,12 +39,11 @@
 
             <div class="flex flex-col space-y-2">
               <label for="characters" class="text-sm font-medium text-gray-700">Personagem:</label>
-              <select name="characters" id="characters" v-model="character_id"
-                class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 p-2 border">
-                <option v-for="character in characters" :value="character.id">
-                  {{ character.name }}
-                </option>
-              </select>
+              <div id="characters"
+                class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 p-2 border"
+              >
+                {{ character.name }}
+              </div>
             </div>
           </div>
 

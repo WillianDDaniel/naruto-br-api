@@ -73,6 +73,20 @@ const app = Vue.createApp({
         console.error(error);
       }
     },
+    async deleteJutsu(jutsu) {
+      const response = await fetch(`/jutsus/${jutsu.id}`, { method: 'DELETE' });
+      const data = await response.json();
+      try {
+        if (response.ok) {
+          console.log('Jutsu excluido com sucesso:', data);
+          window.location.href = `/admin/character/?id=${this.character.id}`;
+        } else {
+          console.error(data.error);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
   async mounted() {
     await this.getCharacter()
