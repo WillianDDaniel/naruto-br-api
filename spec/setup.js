@@ -1,6 +1,6 @@
 import models from '../models';
 
-export async function setupDatabase() {
+async function setupDatabase() {
   await Promise.all(
     Object.keys(models).map(async (modelName) => {
       if (['sequelize', 'Sequelize', 'SequelizeMeta'].includes(modelName)) return null;
@@ -8,3 +8,7 @@ export async function setupDatabase() {
     })
   );
 }
+
+beforeEach(async () => {
+  await setupDatabase();
+});
