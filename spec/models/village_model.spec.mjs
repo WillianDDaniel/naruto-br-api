@@ -30,10 +30,8 @@ describe('Village', () => {
   });
 
   it('should require the name to be unique', async () => {
-    // Criação do primeiro registro válido
     await Village.create({ name: 'Konohagakure' });
 
-    // Tentativa de criar outro registro com o mesmo nome
     const duplicateVillage = Village.build({
       name: 'Konohagakure',
     });
