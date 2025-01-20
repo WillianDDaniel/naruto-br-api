@@ -14,6 +14,7 @@
     "pretest": "NODE_ENV=test npx sequelize-cli db:migrate",
     "pretest:ui": "NODE_ENV=test npx sequelize-cli db:migrate",
     "test": "vitest",
+    "test:e2e": "NODE_ENV=test npx sequelize-cli db:migrate && NODE_ENV=test npx playwright test --ui",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage"
   },

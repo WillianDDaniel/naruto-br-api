@@ -6,15 +6,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: { notEmpty: true, notNull: true },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: { notEmpty: true, notNull: true },
     },
     password_hash: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: { notEmpty: true, notNull: true },
     },
     twoFactorCode: {
       type: DataTypes.STRING,
@@ -32,6 +35,21 @@ module.exports = (sequelize, DataTypes) => {
 
   User.prototype.validatePassword = async function (password) {
     return bcrypt.compare(password, this.password_hash);
+  };
+
+  User.prototype.generateTwoFactorCode = function () {
+    const code = Math.floor(100000 + Math.random() * 900000);
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+    this.twoFactorCode = code.toString();
+    this.twoFactorExpiresAt = expiresAt;
+  };
+
+  User.prototype.isTwoFactorCodeValid = function (code) {
+    if (!this.twoFactorCode || new Date() > this.twoFactorExpiresAt) {
+      return false;
+    }
+    return this.twoFactorCode === code;
   };
 
   return User;

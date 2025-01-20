@@ -143,11 +143,6 @@ const app = Vue.createApp({
       if (response.ok) {
         window.location.href = '/admin';
       }
-
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('code') === 'true') {
-        this.insertCodeInput = true;
-      }
     } catch (error) {
       console.error(error);
       this.showNotification('Erro ao verificar autenticação', 'error');
