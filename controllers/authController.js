@@ -17,17 +17,10 @@ module.exports = {
 
       if (!isValid) return res.status(401).json({ error: 'Invalid password' });
 
-      const code = Math.floor(100000 + Math.random() * 900000);
-      const hashedCode = await bcrypt.hash(code.toString(), 10);
+      user.generateTwoFactorCode();
+      await user.save();
 
-      const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
-
-      await user.update({
-        twoFactorCode: hashedCode,
-        twoFactorExpiresAt: expiresAt,
-      });
-
-      await sendTwoFactorEmail(user.email, code);
+      await sendTwoFactorEmail(user.email, user.twoFactorCode);
       res.status(200).json({ message: 'Verify 2FA code' });
     } catch (error) {
       console.error('Erro no login:', error);
@@ -43,14 +36,8 @@ module.exports = {
 
       if (!user) return res.status(404).json({ error: 'User not found' });
 
-      const isCodeValid = await bcrypt.compare(code, user.twoFactorCode);
-
-      if (!isCodeValid) {
-        return res.status(401).json({ error: 'Invalid 2FA code' });
-      }
-
-      if (new Date() > user.twoFactorExpiresAt) {
-        return res.status(401).json({ error: '2FA code expired' });
+      if (!user.isTwoFactorCodeValid(code)) {
+        return res.status(401).json({ error: 'Invalid or expired 2FA code' });
       }
 
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });

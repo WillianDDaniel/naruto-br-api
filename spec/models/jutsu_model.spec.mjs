@@ -1,13 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { setupDatabase } from '../setup.js';
 import { Jutsu, Character, Village } from '../../models';
 
 describe('Jutsu', () => {
-
-  beforeEach(async () => {
-    await setupDatabase();
-  });
-
   it('should be defined', () => {
     expect(Jutsu).toBeDefined();
   });
